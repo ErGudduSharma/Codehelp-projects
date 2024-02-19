@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            /* height: 100%; */
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            
+        }
+        .about_container{
+            margin: 0;
+            padding: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 15%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-direction: row;
+            position: fixed;
+            background-color: rgb(245, 247, 248);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.571);
+            z-index: 100;
+        }
+        .nav_bar{ 
+            color: rgba(90, 86, 86, 0.977);
+            font-size: 19px;
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .nav_bar .lable:hover{
+            color: orange;
+            text-decoration: underline;
+        }
+        .nav_bar a{
+            text-decoration: none;
+            color: rgba(90, 86, 86, 0.977);
+        }
+        a:hover{
+            color: orange;
+            text-decoration: underline;
+        }
+        .lable{
+            /* height: 30px;
+            width: 80px; */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+        }
+        .box{
+            margin: 10px;
+            padding: 5px;
+            /* padding: 10px; */
+            margin-top: 20%;
+            margin-right: 70%;
+            width: 300px;
+            height: 180px;
+            display: none;
+            align-items: start;
+            justify-content: start;
+            flex-direction: column;
+            position: fixed;
+            /* border: 2px solid; */
+            background-color: white;
+            gap: 30px;
+            opacity: 0;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.71);
+        }
+        .lable:hover .box{
+            opacity: 1;
+            display: flex;
+        }
+        .text1,.text2{
+            width: 60%;
+            display: flex;
+            align-items: start;
+            justify-content: space-evenly;
+        }
+        .text1 span{
+            background-color: pink;
+            border-radius: 10%;
+        }
+        .text2 span{
+            background-color: rgb(216, 216, 91);
+            border-radius: 10%;
+        }
+        .box1{
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            flex-direction: column;
+            color: black;
+            gap: 5px;
+            font-size: 15px;
+        }
+        .box1:hover{
+            background-color: rgba(0, 0, 255, 0.201);
+            border-radius: 2%;
+        }
+        .box2:hover{
+            background-color: rgba(0, 0, 255, 0.201);
+            border-radius: 2%;
+        }
+        .box2{
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            flex-direction: column;
+            color: black;
+            gap: 5px;
+            font-size: 15px;
+        }
+        .btn1{
+            font-size: 15px;
+            border-radius: 10px;
+            height: 50px;
+            width: 200px;
+            gap: 10px;
+            background-color: rgb(96, 114, 232);
+            color: aliceblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+        }
+        .btn1:hover i{
+            transform: translate(20px);
+            transition: 1s;
+        }
+        .icon{
+            width: 16%;
+            gap: 13px;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgb(65, 65, 161);
+        }
+        .about{
+            margin-top: 7%;
+            height: 100vh; 
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content:space-around;
+            flex-direction: row;
+            background-image: linear-gradient(45deg, white 50%, #9a657b71 50%);
+        }
+        .pera{
+            color: rgb(82, 81, 81);
+        }
+        .details{
+            display: flex;
+            align-items: start;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            font-family: Rubik,sans-serif;
+            font-size: 32px;
+        }
+        .code1{
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            width: 100%;
+            height: 100%;
+            gap: 10px;
+            color: rgba(101, 101, 187, 0.845);
+        }
+        .animated{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            position: relative;
+            gap: 15px;
+            font-family: Rubik,sans-serif;
+            overflow: hidden;
+            color: #4f4e4ef9;
+        }
+    .animated:before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 70px;
+      width: 180px;
+      background-color: white;
+      border-left: 3px solid rgb(1, 1, 1);
+      animation: animate 4s steps(12)  infinite;
+      
+    }
+    @keyframes animate{
+      40%,50%{
+        left:calc(100%);
+      }
+      50%,80%{
+        left: 100%;
+      }
+    }
+        h2{
+            width:70%;
+        }
+        .btn2{
+            margin-top: 4%;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .heading{
+            font-size: 60px;
+            color: rgb(94, 94, 173);
+        }
+        h2{
+            font-size: 30px;
+        }
+        .details span{
+            color: #4f4e4ef9;
+        }
+        .btn3{
+            height: 50px;
+            width: 140px;
+            color: aliceblue;
+            background-color: rgb(96, 114, 232);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn3:hover{
+            background-color: black;
+            text-decoration: underline;
+        }
+        .btn4:hover{
+            background-color: black;
+            color: #f9fafc;
+            text-decoration: underline;
+        }
+        .btn4{
+            height: 50px;
+            width: 140px;
+            color: rgb(16, 17, 17);
+            background-color: rgb(242, 242, 244);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn5{
+            color:whitesmoke;
+            background-color: rgb(96, 114, 232);
+            height: 38px;
+            width: 200px;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            position: fixed;
+            border-radius: 15px 15px 0 15px;
+            margin-top: 80%;
+            margin-left: 85%;
+            font-family: Rubik,sans-serif;
+        }
+        .icon1{
+            color: yellow;
+            font-size: 15px;
+        }
+        .imglogo{
+            margin-right: 4%;
+            width:40%;
+            height: 30%;
+            /* border: 1px solid; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
+        .back_img{
+            margin-top: 3%;
+            height: 80%;
+            width: 45%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img2,.img3,.img4{
+            gap: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation-name: bottomMovement;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-delay: 0s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            animation-direction: alternate-reverse; 
+        }
+        @keyframes bottomMovement {
+                   from{
+                           left:0px;
+                           bottom: 0px;
+                        }
+                     to{
+                             left:0px;
+                           bottom:20px;
+                          }
+                        }
+        .img2{
+          margin-bottom: 60%;
+          margin-left: 40%;
+        }
+        .img3{
+            margin-left: -50%;
+            margin-top: 30%;
+        }
+        .img4{
+            margin-left: 20%;
+            margin-top: 40%;
+        } 
+        .rank{
+            width: 100vw;
+            height: 40vh;
+            border: 1px solid;
+            background-color: rgb(96, 114, 232);
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: Rubik,sans-serif;
+            justify-content:space-evenly;
+            position: relative;
+            color: #f9fafc;
+            overflow: hidden;
+        }
+        .design1{
+           position: absolute;
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            margin-top: 12%;
+            margin-right: 94%;
+        }
+        .design2{
+            transform: rotateZ(180deg);
+            position: absolute;
+            margin-bottom: 13%;
+            margin-left: 94%;
+        }
+        .dot1{
+            height: 18%;
+            width: 18%;
+            position: absolute;
+            margin-bottom: 14%;
+            margin-right: 90%;
+        }
+        .dot2{
+            height: 18%;
+            width: 18%;
+            position: absolute;
+            margin-top: 14%;
+            margin-left: 90%;
+        }
+        .head1,.head2,.head3,.head4{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .rank a{
+            color: white;
+        } 
+        .line1, .line2, .line3{
+            width: 1px;
+            height: 50%;
+            border-radius: 20px;
+            background-image: linear-gradient(white,white);
+        }  
+        .about_card{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 10%;
+            gap:80px;
+        }
+        .card{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            align-items: center;
+            justify-content: space-around;
+            gap: 5%;
+            position: relative;
+            /* border: 1px solid; */
+        }
+        .card1, .card2,.card3,.card4,.card5,.card6{
+            padding: 40px;
+            gap: 10px;
+            height: 350px;
+            width: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .card1:hover,.card2:hover,.card3:hover,.card4:hover,.card5:hover,.card6:hover{
+            transform: scale(1.07);
+            transition: 1s;
+        }
+        .heading1{
+            width: 40%;
+            gap: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .heading1 h3{
+            color: rgba(101, 101, 187, 0.845) ;
+            font-size: 25px;
+            font-family: Rubik,sans-serif;
+            text-transform: uppercase;
+        }
+        .heading1 h1{
+            font-family: Rubik,sans-serif;
+            font-size: 45px;
+        }
+        .card_img{
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            border:1px solid black;
+        }   
+
+        .card1{
+            background-image: linear-gradient(180deg, #f9fafc 98%, #eb106b 2%);
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.443);
+            border-radius: 10px;
+            background-color: whitesmoke;
+            position: relative;
+            animation-name:rightMovement;
+            animation-duration: 4s;
+            animation-delay: 0s;
+            animation-timing-function: animate;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            animation-direction: forwards; 
+        }
+        @keyframes rightMovement {
+                   from{
+                           top:0;
+                           right: -500px;
+                        }
+                     to{
+                             top:0;
+                           right:0px;
+                          }
+                        } 
+            
+        
+        .card2{
+            background-image: linear-gradient(180deg, #f9fafc 98%, #10eb1f 2%);
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.443);
+            border-radius: 10px;
+            background-color: whitesmoke;
+            position: relative;
+            animation-name: topMovement;
+            animation-duration: 4s;
+            animation-delay: 0s;
+            animation-timing-function: animate;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            animation-direction: forwards; 
+        }
+        @keyframes topMovement {
+                   from{
+                           left:0px;
+                           top: -100px;
+                        }
+                     to{
+                             left:0px;
+                           top:0px;
+                          }
+                        }
+        .card3{
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.443);
+            border-radius: 10px;
+            background-color: whitesmoke;
+            background-image: linear-gradient(180deg, #f9fafc 98%, #10d5eb 2%);
+            position: relative;
+            animation-name: leftMovement;
+            animation-duration: 4s;
+            animation-delay: 0s;
+            animation-timing-function: animate;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            animation-direction: forwards; 
+        }
+        @keyframes leftMovement {
+                   from{
+                           top:0;
+                           left: -500px;
+                        }
+                     to{
+                             top:0;
+                           left:0px;
+                          }
+                        } 
+                     
+
+        .card4{
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.443);
+            border-radius: 10px;
+            background-color: whitesmoke;
+            background-image: linear-gradient(180deg, #f9fafc 98%, #eb4e10 2%);
+            position: relative;
+            animation-name:rightMovement;
+            animation-duration: 4s;
+            animation-delay: 0s;
+            animation-timing-function: animate;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            animation-direction: forwards; 
+        }
+        @keyframes rightMovement {
+                   from{
+                           top:0;
+                           right: -500px;
+                        }
+                     to{
+                             top:0;
+                           right:0px;
+                          }
+                        } 
+
+        .card5{
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.443);
+            border-radius: 10px;
+            background-color: whitesmoke;
+            background-image: linear-gradient(180deg, #f9fafc 98%, #3c10eb 2%);
+        
+            position: relative;
+            animation-name: leftMovement;
+            animation-duration: 4s;
+            animation-delay: 0s;
+            animation-timing-function: animate;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            animation-direction: forwards; 
+        }
+        @keyframes leftMovement {
+                   from{
+                           top:0;
+                           left: -500px;
+                        }
+                     to{
+                             top:0;
+                           left:0px;
+                          }
+                        } 
+        .card6{
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.443);
+            border-radius: 10px;
+            background-color: whitesmoke;
+            background-image: linear-gradient(180deg, #f9fafc 98%, #f6fa04 2%);
+            position: relative;
+            animation-name: topMovement;
+            animation-duration: 4s;
+            animation-delay: 0s;
+            animation-timing-function: animate;
+            animation-fill-mode: forwards;
+            animation-play-state: running;
+            animation-direction: forwards; 
+        }
+        @keyframes topMovement {
+                   from{
+                           left:0px;
+                           top: -100px;
+                        }
+                     to{
+                             left:0px;
+                           top:0px;
+                          }
+                        }
+
+        .about_title{
+
+            margin-top: 20%;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-direction: column;
+            background-image: url(Colors\ Of\ Sky.jpg);
+            
+        }                
+        .title{
+            margin: 0;
+            padding: 0;
+            /* margin: 30px; */
+            width: 70vw;
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
+            font-family: rubik,sans-serif;
+            font-size: 35px;
+            font-weight: bold;
+            /* border: 1px solid; */
+        }
+        .title span{
+            color: rgb(96, 114, 232) ;
+        }
+        .title_btn{
+            height: 60px;
+            width: 160px;
+            color: aliceblue;
+            background-color: rgb(96, 114, 232);
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .line{
+            width: 100vw;
+            height: 3px;
+            background-image: linear-gradient(black,white,black,white);
+            display: flex;
+        }
+        .title_img:hover{
+                transform: rotate(360deg);
+                transition: 2s;
+            }
+        
+        .title_img{
+            margin-bottom: 5%;
+            height: 300px;
+            width: 300px;
+            border-radius: 50%;
+            border: 1px solid black;
+            position: relative;
+             animation-name: bottommovement;
+            animation-duration: 5s;
+            animation-delay: 0s;
+            animation-timing-function: animate;
+            animation-fill-mode: backwards;
+            /* animation-play-state: running;
+            animation-direction: forwards;  */
+        }
+        @keyframes bottommovement {
+                   0%{
+                           left:0px;
+                           bottom: -200px;
+                        }
+                     100%{
+                             left:0px;
+                           bottom:0px;
+                          }
+                        } 
+
+        
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="about_container">
+
+            <div class="container_logo">
+                <img src="codehelp logo.svg" alt="">
+            </div>
+
+            <nav class="nav_bar">
+                <a href="#AboutUs">About Us</a>
+                <a href="#Courses">Courses</a>
+
+                <div class="lable">
+                <p>Lab <i class="fa-solid fa-chevron-down"></i></p>
+
+                <div class="box">
+                    <div class="box1">
+                        <h4 class="text1">Fruitbox Flex<span>Populer</span></h4>
+                        <p>A Fun and intractive way to sharpen your flexbox CSS skills</p>
+                    </div>
+                    <div class="box2">
+                        <h4 class="text2">Quick Compiler<span>Beta</span></h4>
+                        <p>Write and run code in multiple language from anywhere</p>
+                    </div>
+                </div>
+
+            </div>
+
+                <a href="#contact">Contact</a>
+                
+            </nav>
+
+           <div class="icon">
+              <button class="btn1">Login
+                <i class="fa-solid fa-right-to-bracket"></i>
+              </button>
+                 <i class="fa-regular fa-moon"></i>
+           </div>
+
+           <div class="btn5"> 
+            <div class="icon1"> 🤔 Facing an issues ?? </div>
+                
+        </div>
+
+        </div>
+
+        
+
+        <div class="about">
+
+            <div class="details">
+
+               <div class="code1">
+                <h1>Learn <span>With</span></h1>
+                <h1 class="animated">LOVE</h1>
+               </div>
+
+
+                <h2 class="pera">The Ultimate Guide To Ace SDE Interview</h2>
+
+                <div class="btn2">
+                    <button class="btn3">View Courses</button>
+                    <button class="btn4">Watch Video</button>
+                </div>
+            </div>
+
+            <div class="imglogo">
+            <img class="back_img" src="codehelp img1.svg" alt="">
+
+                <img class="img2" src="codehelp img2.webp" alt="">
+                <img class="img3" src="codehelp img3.webp" alt="">
+                <img class="img4" src="codehelp img4.webp" alt="">
+            </div>
+
+            
+        </div>  
+
+        <div class="rank">
+
+
+            <svg class="dot1" width="280" height="69" viewBox="0 0 280 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="4.16305" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="4.16305" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="203.989" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="203.989" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="4.16305" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="203.989" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="104.076" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="104.076" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="104.076" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="54.1191" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="54.1191" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="253.946" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="253.946" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="54.1191" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="253.946" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="154.032" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="154.032" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="154.032" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="29.1416" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="29.1416" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="228.968" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="228.968" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="29.1416" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="228.968" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="129.054" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="129.054" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="129.054" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="79.0976" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="79.0976" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="278.924" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="278.924" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="79.0976" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="278.924" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="179.012" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="179.012" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                <ellipse cx="179.012" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                </svg>
+                
+
+            <svg class="design1" width="89" height="99" viewBox="0 0 87 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="-0.5" cy="87.5" r="29.75" stroke="white" stroke-opacity="0.09" stroke-width="10.5"/>
+                <circle cx="-0.5" cy="87.5" r="56" stroke="white" stroke-opacity="0.09" stroke-width="10.5"/>
+                <circle cx="-0.5" cy="87.5" r="82.25" stroke="white" stroke-opacity="0.09" stroke-width="10.5"/>
+                </svg>
+
+            <div class="head1">
+                <h1>900k+</h1>
+                <p>Subscirbes</p>
+                <a href="">On Youtube</a>
+            </div>
+    
+            <div class="line1"></div>
+    
+            <div class="head2">
+                <h1>4k+</h1>
+                <p>Followers</p>
+                <a href="">On Twitter</a>
+            </div>
+    
+            <div class="line2"></div>
+    
+            <div class="head3">
+                <h1>100k+</h1>
+                <p>Followers</p>
+                <a href="">On Instagram</a>
+            </div>
+    
+            <div class="line3"></div>
+    
+            <div class="head4">
+                <h1>410k+</h1>
+                <p>Followers</p>
+                <a href="">On Linkedin</a>
+            </div>
+
+            <svg class="design2" width="87" height="97" viewBox="0 0 87 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="-0.5" cy="87.5" r="29.75" stroke="white" stroke-opacity="0.09" stroke-width="10.5"/>
+                <circle cx="-0.5" cy="87.5" r="56" stroke="white" stroke-opacity="0.09" stroke-width="10.5"/>
+                <circle cx="-0.5" cy="87.5" r="82.25" stroke="white" stroke-opacity="0.09" stroke-width="10.5"/>
+                </svg>
+
+                <svg class="dot2" width="280" height="69" viewBox="0 0 280 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="4.16305" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="4.16305" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="203.989" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="203.989" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="4.16305" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="203.989" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="104.076" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="104.076" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="104.076" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="54.1191" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="54.1191" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="253.946" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="253.946" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="54.1191" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="253.946" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="154.032" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="154.032" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="154.032" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="29.1416" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="29.1416" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="228.968" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="228.968" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="29.1416" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="228.968" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="129.054" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="129.054" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="129.054" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="79.0976" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="79.0976" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="278.924" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="278.924" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="79.0976" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="278.924" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="179.012" cy="4.20455" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="179.012" cy="54.6586" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    <ellipse cx="179.012" cy="29.4321" rx="4.16305" ry="4.20455" fill="white" fill-opacity="0.06"/>
+                    </svg>
+                    
+
+            
+        </div>
+
+        
+
+        <div class="about_card">
+
+            <div class="heading1">
+                <h3>Why Code Help ??</h3>
+                <h1>Making Learning Easier And More Convenient For You</h1>
+            </div>
+
+            <div class="card">
+           
+            <div class="card1">
+                <img src="chef1.jpg" alt="" class="card_img">
+                <h1>Hlo</h1>
+                <p>Lorem ipsum dolor sit amet
+                     consectetur adipisicing elit. 
+                     Tempore, minima? Praesentium iste
+                     explicabo quisquam, doloribus dolores 
+                      dolorem libero, nisi neque nesciunt 
+                      atque laboriosam ipsam ad distinctio, 
+                      magni est quibusdam esse.</p>
+             </div>
+    
+             <div class="card2">
+                <img src="chef1.jpg" alt=""  class="card_img">
+                <h1>Hlo</h1>
+                <p>Lorem ipsum dolor sit amet
+                     consectetur adipisicing elit. 
+                     Tempore, minima? Praesentium iste
+                     explicabo quisquam, doloribus dolores 
+                      dolorem libero, nisi neque nesciunt 
+                      atque laboriosam ipsam ad distinctio, 
+                      magni est quibusdam esse.</p>
+             </div>
+    
+             <div class="card3">
+                <img src="chef1.jpg" alt=""  class="card_img">
+                <h1>Hlo</h1>
+                <p>Lorem ipsum dolor sit amet
+                     consectetur adipisicing elit. 
+                     Tempore, minima? Praesentium iste
+                     explicabo quisquam, doloribus dolores 
+                      dolorem libero, nisi neque nesciunt 
+                      atque laboriosam ipsam ad distinctio, 
+                      magni est quibusdam esse.</p>
+             </div>
+    
+             <div class="card4">
+                <img src="chef1.jpg" alt=""  class="card_img">
+                <h1>Hlo</h1>
+                <p>Lorem ipsum dolor sit amet
+                     consectetur adipisicing elit. 
+                     Tempore, minima? Praesentium iste
+                     explicabo quisquam, doloribus dolores 
+                      dolorem libero, nisi neque nesciunt 
+                      atque laboriosam ipsam ad distinctio, 
+                      magni est quibusdam esse.</p>
+             </div>
+    
+             <div class="card5">
+                <img src="chef1.jpg" alt=""  class="card_img">
+                <h1>Hlo</h1>
+                <p>Lorem ipsum dolor sit amet
+                     consectetur adipisicing elit. 
+                     Tempore, minima? Praesentium iste
+                     explicabo quisquam, doloribus dolores 
+                      dolorem libero, nisi neque nesciunt 
+                      atque laboriosam ipsam ad distinctio, 
+                      magni est quibusdam esse.</p>
+             </div>
+    
+             <div class="card6">
+                <img src="chef1.jpg" alt=""  class="card_img">
+                <h1>Hlo</h1>
+                <p>Lorem ipsum dolor sit amet
+                     consectetur adipisicing elit. 
+                     Tempore, minima? Praesentium iste
+                     explicabo quisquam, doloribus dolores 
+                      dolorem libero, nisi neque nesciunt 
+                      atque laboriosam ipsam ad distinctio, 
+                      magni est quibusdam esse.</p>
+             </div>
+            </div>
+        </div>
+
+
+       <div class="about_title">
+
+        <div class="title">
+            <p>Meet your <span>Instructor</span></p>
+            <button class="title_btn">Know More</button>
+        </div>
+
+        <div class="line"></div>
+
+        <img src="chef1.jpg" alt="" class="title_img">
+
+       </div>
+        
+    </div>
+    
+</body>
+</html>
