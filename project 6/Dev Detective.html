@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevDetective - CodeHelp</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link rel="manifest" href="./assets/site.webmanifest">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./styles.css"> -->
+
+    <link rel="stylesheet" href="detective.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">DevDetective</h1>
+            <div id="btn-mode">
+                <p id="mode-text">DARK</p>
+                <div class="icon-container">
+                    <img id="mode-icon" src="./assets/images/moon-icon.svg" alt=""></div>
+            </div>
+        </header>
+        <main>
+            <div id="app">
+                <div class="searchbar-container active">
+                    <input type="search" name="user-input" id="input" placeholder="Enter a GitHub username..." required>
+                    <div class="error">
+                        <p id="no-results">no search results</p>
+                    </div>
+                    <button class="btn-search" id="submit">Search</button>
+                </div>
+                <div class="errorShow active">
+                  <img src="./assets/not-found.png" alt="">
+                  <p>Not Found</p>
+                </div>
+                <div class="profile-container ">
+                    <div class="profile-content">
+                        <div class="profile-header">
+                            <img id="avatar" src="#" alt="">
+                            <div class="profile-info-wrapper">
+                                <div class="profile-name">
+                                    <h2 id="name"></h2>
+                                    <a href="#" target="_blank" rel="noopener noreferrer" id="user"></a>
+                                </div>
+                                <p id="date"></p>
+                            </div>
+                        </div>
+                        <p id="bio"></p>
+                        <div class="profile-stats-wrapper">
+                            <div class="profile-stat">
+                                <p class="stat-title">Repos</p>
+                                <p id="repos" class="stat-value"></p>
+                            </div>
+                            <div class="profile-stat">
+                                <p class="stat-title">Followers</p>
+                                <p id="followers" class="stat-value"></p>
+                            </div>
+                            <div class="profile-stat">
+                                <p class="stat-title">Following</p>
+                                <p id="following" class="stat-value"></p>
+                            </div>
+                        </div>
+                        <div class="profile-bottom-wrapper">
+                            <div class="profile-info">
+                                <div class="bottom-icons"><img src="./assets/images/location-icon.svg" alt=""></div>
+                                <p id="location"></p>
+                            </div>
+                            <div class="profile-info">
+                                <div class="bottom-icons"><img src="./assets/images/website-icon.svg" alt=""></div>
+                                <a href="#" id="page"></a>
+                            </div>
+                            <div class="profile-info">
+                                <div class="bottom-icons"><img src="./assets/images/twitter-icon.svg" alt=""></div>
+                                <a href="#" id="twitter"></a>
+                            </div>
+                            <div class="profile-info">
+                                <div class="bottom-icons"><img src="./assets/images/company-icon.svg" alt=""></div>
+                                <p id="company"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        //Variables
+const searchbar = document.querySelector(".searchbar-container");
+const profilecontainer = document.querySelector(".profile-container");
+const root = document.documentElement.style;
+const get = (param) => document.getElementById(`${param}`);
+
+const url = "https://api.github.com/users/";
+const noresults = get("no-results");
+const btnmode = get("btn-mode");
+const modetext = get("mode-text");
+const modeicon = get("mode-icon");
+const btnsubmit = get("submit");
+const input = get("input");
+const avatar = get("avatar");
+const userName = get("name");
+const user = get("user");
+const date = get("date");
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const bio = get("bio");
+const repos = get("repos");
+const followers = get("followers");
+const following = get("following");
+const user_location = get("location");
+const page = get("page");
+const twitter = get("twitter");
+const company = get("company");
+let darkMode = false;
+const errorImg = get("errorShow");
+
+// Event Listeners
+btnsubmit.addEventListener("click", function () {
+  if (input.value !== "") {
+    getUserData(url + input.value);
+    getUserInfo(data);
+    
+  }
+});
+
+input.addEventListener(
+  "keydown",
+  function (e) {
+    if (e.key == "Enter") {
+      if (input.value !== "") {
+        getUserData(url + input.value);
+      }
+    }
+  },
+  false
+);
+
+input.addEventListener("input", function () {
+  noresults.style.display = "none";
+});
+
+btnmode.addEventListener("click", function () {
+  if (darkMode == false) {
+    darkModeProperties();
+  } else {
+    lightModeProperties();
+  }
+});
+
+// Functions API CAll
+function getUserData(gitUrl) {
+  fetch(gitUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      updateProfile(data);
+      updataData(data);
+    })
+    .catch((error) => {
+      throw error;
+    });
+  }
+
+// for render the code on UI...
+
+function updateProfile(data) {
+  if (data.message !== "Not Found") {
+    noresults.style.display = "none";
+    function checkNull(param1, param2) {
+      if (param1 === "" || param1 === null) {
+        param2.style.opacity = 0.5;
+        param2.previousElementSibling.style.opacity = 0.5;
+        return false;
+      } else {
+        return true;
+      }
+    }
+    avatar.src = `${data.avatar_url}`;
+    userName.innerText = data.name === null ? data.login : data.name;
+    user.innerText = `@${data.login}`;
+    user.href = `${data.html_url}`;
+    datesegments = data.created_at.split("T").shift().split("-");
+    date.innerText = `Joined ${datesegments[2]} ${months[datesegments[1] - 1]} ${datesegments[0]}`;
+    bio.innerText = data.bio == null ? "This profile has no bio" : `${data.bio}`;
+    repos.innerText = `${data.public_repos}`;
+    followers.innerText = `${data.followers}`;
+    following.innerText = `${data.following}`;
+    user_location.innerText = checkNull(data.location, user_location) ? data.location : "Not Available";
+    page.innerText = checkNull(data.blog, page) ? data.blog : "Not Available";
+    page.href = checkNull(data.blog, page) ? data.blog : "#";
+    twitter.innerText = checkNull(data.twitter_username, twitter) ? data.twitter_username : "Not Available";
+    twitter.href = checkNull(data.twitter_username, twitter) ? `https://twitter.com/${data.twitter_username}` : "#";
+    company.innerText = checkNull(data.company, company) ? data.company : "Not Available";
+    searchbar.classList.toggle("active");
+    profilecontainer.classList.add("active");
+  }else {
+    noresults.style.display = "block";
+  }
+}
+
+//dark mode default
+const prefersDarkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+if (localStorage.getItem("dark-mode")) {
+  darkMode = localStorage.getItem("dark-mode");
+  darkModeProperties();
+} else {
+  localStorage.setItem("dark-mode", prefersDarkMode);
+  darkMode = prefersDarkMode;
+  lightModeProperties();
+}
+
+function darkModeProperties() {
+  root.setProperty("--lm-bg", "#141D2F");
+  root.setProperty("--lm-bg-content", "#1E2A47");
+  root.setProperty("--lm-text", "white");
+  root.setProperty("--lm-text-alt", "white");
+  root.setProperty("--lm-shadow-xl", "rgba(70,88,109,0.15)");
+  modetext.innerText = "LIGHT";
+  modeicon.src = "./assets/images/sun-icon.svg";
+  root.setProperty("--lm-icon-bg", "brightness(1000%)");
+  darkMode = true;
+  localStorage.setItem("dark-mode", true);
+}
+function lightModeProperties() {
+  root.setProperty("--lm-bg", "#F6F8FF");
+  root.setProperty("--lm-bg-content", "#FEFEFE");
+  root.setProperty("--lm-text", "#4B6A9B");
+  root.setProperty("--lm-text-alt", "#2B3442");
+  root.setProperty("--lm-shadow-xl", "rgba(70, 88, 109, 0.25)");
+  modetext.innerText = "DARK";
+  modeicon.src = "./assets/images/moon-icon.svg";
+  root.setProperty("--lm-icon-bg", "brightness(100%)");
+  darkMode = false;
+  localStorage.setItem("dark-mode", false);
+}
+
+
+getUserData(url + "erguddusharma");
+    </script>
+</body>
+
+</html>
